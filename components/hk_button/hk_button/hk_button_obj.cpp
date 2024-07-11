@@ -25,7 +25,7 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <esp_system.h>
-#include <iot_button.h>
+#include <hk_button.h>
 
 CButton::CButton(gpio_num_t gpio_num, button_active_t active_level)
 {
