@@ -1597,6 +1597,28 @@ char *esp_hap_get_setup_payload(char *setup_code, char *setup_id, bool wac_suppo
  * as per the requirements of HAP Specs R16.
  */
 void hap_pair_setup_re_enable(void);
+
+/**
+ * @brief Set Characteristic private data
+ *
+ * This will be available in the read/write callbacks
+ *
+ * @param[in] hs HAP Characteristic Object Handle
+ * @param[in] priv Private data for the characteristic
+ */
+void hap_char_set_priv(hap_char_t *hc, void *priv);
+
+/**
+ * @brief Get Characteristic private
+ *
+ * This will get the private data associated with the characteristic,
+ * which was set using hap_char_set_priv().
+ *
+ * @param[in] hs HAP Characteristic Object Handle
+ *
+ * @return Pointer to the private data (can be NULL)
+ */
+void *hap_char_get_priv(hap_char_t *hs);
 #ifdef __cplusplus
 }
 #endif

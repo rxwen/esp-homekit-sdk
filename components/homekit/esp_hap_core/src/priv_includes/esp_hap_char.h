@@ -81,6 +81,7 @@ typedef struct  {
     uint8_t *valid_vals;
     size_t valid_vals_cnt;
     bool update_called;
+    void *priv;
 } __hap_char_t;
 
 void hap_char_manage_notification(hap_char_t *hc, int index, bool ev);
