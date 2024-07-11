@@ -40,7 +40,7 @@
 
 #include <hap_bct_http_handlers.h>
 
-#include <iot_button.h>
+#include <hk_button.h>
 
 #include <app_wifi.h>
 #include <app_hap_setup_payload.h>

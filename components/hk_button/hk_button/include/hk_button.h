@@ -22,8 +22,8 @@
  *
  */
 
-#ifndef _IOT_BUTTON_H_
-#define _IOT_BUTTON_H_
+#ifndef _HK_BUTTON_H_
+#define _HK_BUTTON_H_
 
 #ifdef __cplusplus
 extern "C" {

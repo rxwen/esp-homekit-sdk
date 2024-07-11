@@ -34,7 +34,7 @@
 #include <hap_apple_servs.h>
 #include <hap_apple_chars.h>
 
-#include <iot_button.h>
+#include <hk_button.h>
 
 #include <app_wifi.h>
 #include <app_hap_setup_payload.h>
