@@ -609,3 +609,19 @@ void hap_char_add_valid_vals_range(hap_char_t *hc, uint8_t start_val, uint8_t en
         _hc->valid_vals_range[1] = end_val;
     }
 }
+
+void hap_char_set_priv(hap_char_t *hc, void *priv)
+{
+    if (hc) {
+        ((__hap_char_t *)hc)->priv = priv;
+    }
+}
+
+void *hap_char_get_priv(hap_char_t *hc)
+{
+    if (hc) {
+        return ((__hap_char_t *)hc)->priv;
+    } else {
+        return NULL;
+    }
+}
