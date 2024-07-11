@@ -55,7 +55,7 @@ typedef enum {
  *
  * @return A button_handle_t handle to the created button object, or NULL in case of error.
  */
-button_handle_t iot_button_create(gpio_num_t gpio_num, button_active_t active_level);
+button_handle_t hk_button_create(gpio_num_t gpio_num, button_active_t active_level);
 
 /**
  * @brief Register a callback function for a serial trigger event.
@@ -74,7 +74,7 @@ button_handle_t iot_button_create(gpio_num_t gpio_num, button_active_t active_le
  *     - ESP_OK Success
  *     - ESP_FAIL Parameter error
  */
-esp_err_t iot_button_set_serial_cb(button_handle_t btn_handle, uint32_t start_after_sec, TickType_t interval_tick, button_cb cb, void* arg);
+esp_err_t hk_button_set_serial_cb(button_handle_t btn_handle, uint32_t start_after_sec, TickType_t interval_tick, button_cb cb, void* arg);
 
 /**
  * @brief Register a callback function for a button_cb_type_t action.
@@ -92,7 +92,7 @@ esp_err_t iot_button_set_serial_cb(button_handle_t btn_handle, uint32_t start_af
  *     - ESP_OK Success
  *     - ESP_FAIL Parameter error
  */
-esp_err_t iot_button_set_evt_cb(button_handle_t btn_handle, button_cb_type_t type, button_cb cb, void* arg);
+esp_err_t hk_button_set_evt_cb(button_handle_t btn_handle, button_cb_type_t type, button_cb cb, void* arg);
 
 /**
  * @brief Callbacks invoked as timer events occur while button is pressed.
@@ -112,7 +112,7 @@ esp_err_t iot_button_set_evt_cb(button_handle_t btn_handle, button_cb_type_t typ
  *     - ESP_OK Success
  *     - ESP_FAIL Parameter error
  */
-esp_err_t iot_button_add_on_press_cb(button_handle_t btn_handle, uint32_t press_sec, button_cb cb, void* arg);
+esp_err_t hk_button_add_on_press_cb(button_handle_t btn_handle, uint32_t press_sec, button_cb cb, void* arg);
 
 /**
  * @brief Single callback invoked according to the latest timer event on button release. 
@@ -132,7 +132,7 @@ esp_err_t iot_button_add_on_press_cb(button_handle_t btn_handle, uint32_t press_
  *     - ESP_OK Success
  *     - ESP_FAIL Parameter error
  */
-esp_err_t iot_button_add_on_release_cb(button_handle_t btn_handle, uint32_t press_sec, button_cb cb, void* arg);
+esp_err_t hk_button_add_on_release_cb(button_handle_t btn_handle, uint32_t press_sec, button_cb cb, void* arg);
 
 /**
  * @brief Delete button object and free memory
@@ -142,7 +142,7 @@ esp_err_t iot_button_add_on_release_cb(button_handle_t btn_handle, uint32_t pres
  *     - ESP_OK Success
  *     - ESP_FAIL Parameter error
  */
-esp_err_t iot_button_delete(button_handle_t btn_handle);
+esp_err_t hk_button_delete(button_handle_t btn_handle);
 
 /**
  * @brief Remove callback
@@ -153,7 +153,7 @@ esp_err_t iot_button_delete(button_handle_t btn_handle);
  * @return
  *     - ESP_OK Success
  */
-esp_err_t iot_button_rm_cb(button_handle_t btn_handle, button_cb_type_t type);
+esp_err_t hk_button_rm_cb(button_handle_t btn_handle, button_cb_type_t type);
 
 #ifdef __cplusplus
 }

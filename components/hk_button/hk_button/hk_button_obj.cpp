@@ -29,36 +29,36 @@
 
 CButton::CButton(gpio_num_t gpio_num, button_active_t active_level)
 {
-    m_btn_handle = iot_button_create(gpio_num, active_level);
+    m_btn_handle = hk_button_create(gpio_num, active_level);
 }
 
 CButton::~CButton()
 {
-    iot_button_delete(m_btn_handle);
+    hk_button_delete(m_btn_handle);
     m_btn_handle = NULL;
 }
 
 esp_err_t CButton::set_evt_cb(button_cb_type_t type, button_cb cb, void* arg)
 {
-    return iot_button_set_evt_cb(m_btn_handle, type, cb, arg);
+    return hk_button_set_evt_cb(m_btn_handle, type, cb, arg);
 }
 
 esp_err_t CButton::set_serial_cb(button_cb cb, void* arg, TickType_t interval_tick, uint32_t start_after_sec)
 {
-    return iot_button_set_serial_cb(m_btn_handle, start_after_sec, interval_tick, cb, arg);
+    return hk_button_set_serial_cb(m_btn_handle, start_after_sec, interval_tick, cb, arg);
 }
 
 esp_err_t CButton::add_on_press_cb(uint32_t press_sec, button_cb cb, void* arg)
 {
-    return iot_button_add_on_press_cb(m_btn_handle, press_sec, cb, arg);
+    return hk_button_add_on_press_cb(m_btn_handle, press_sec, cb, arg);
 }
 
 esp_err_t CButton::add_on_release_cb(uint32_t press_sec, button_cb cb, void* arg)
 {
-    return iot_button_add_on_release_cb(m_btn_handle, press_sec, cb, arg);
+    return hk_button_add_on_release_cb(m_btn_handle, press_sec, cb, arg);
 }
 
 esp_err_t CButton::rm_cb(button_cb_type_t type)
 {
-    return iot_button_rm_cb(m_btn_handle, type);
+    return hk_button_rm_cb(m_btn_handle, type);
 }
