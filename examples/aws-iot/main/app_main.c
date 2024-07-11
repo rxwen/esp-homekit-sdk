@@ -20,7 +20,7 @@
 #include <hap_apple_chars.h>
 #include <hap_fw_upgrade.h>
 
-#include <iot_button.h>
+#include <hk_button.h>
 
 #include <app_wifi.h>
 #include <app_hap_setup_payload.h>
@@ -66,9 +66,9 @@ static void reset_to_factory_handler(void* arg)
  */
 static void reset_key_init(uint32_t key_gpio_pin)
 {
-    button_handle_t handle = iot_button_create(key_gpio_pin, BUTTON_ACTIVE_LOW);
-    iot_button_add_on_release_cb(handle, RESET_NETWORK_BUTTON_TIMEOUT, reset_network_handler, NULL);
-    iot_button_add_on_press_cb(handle, RESET_TO_FACTORY_BUTTON_TIMEOUT, reset_to_factory_handler, NULL);
+    button_handle_t handle = hk_button_create(key_gpio_pin, BUTTON_ACTIVE_LOW);
+    hk_button_add_on_release_cb(handle, RESET_NETWORK_BUTTON_TIMEOUT, reset_network_handler, NULL);
+    hk_button_add_on_press_cb(handle, RESET_TO_FACTORY_BUTTON_TIMEOUT, reset_to_factory_handler, NULL);
 }
 
 /* Mandatory identify routine for the accessory.
