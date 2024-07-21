@@ -211,7 +211,7 @@ static void smart_outlet_thread_entry(void *p)
     /* After all the initializations are done, start the HAP core */
     hap_start();
     /* Start Wi-Fi */
-    app_wifi_start(portMAX_DELAY);
+    app_wifi_start(portMAX_DELAY, NULL, NULL);
 
     uint32_t io_num = OUTLET_IN_USE_GPIO;
     hap_val_t appliance_value = {
