@@ -112,8 +112,8 @@ static void get_device_service_name(char *service_name, size_t max)
     uint8_t eth_mac[6];
     const char *ssid_prefix = "EK_";
     esp_wifi_get_mac(WIFI_IF_STA, eth_mac);
-    snprintf(service_name, max, "%s%02X%02X%02X",
-             ssid_prefix, eth_mac[3], eth_mac[4], eth_mac[5]);
+    snprintf(service_name, max, "%s%02X%02X%02X%02X",
+             ssid_prefix, eth_mac[2], eth_mac[3], eth_mac[4], eth_mac[5]);
 }
 
 static esp_err_t get_device_pop(char *pop, size_t max)
@@ -273,7 +273,7 @@ void app_wifi_init(void)
 #ifdef CONFIG_APP_WIFI_USE_HARDCODED
 #define APP_WIFI_SSID   CONFIG_APP_WIFI_SSID
 #define APP_WIFI_PASS   CONFIG_APP_WIFI_PASSWORD
-esp_err_t app_wifi_start(TickType_t ticks_to_wait)
+esp_err_t app_wifi_start(TickType_t ticks_to_wait, const char* svc_name, const char* pop_value)
 {
     wifi_config_t wifi_config = {
         .sta = {
@@ -307,7 +307,7 @@ static void wifi_init_sta()
     ESP_ERROR_CHECK(esp_wifi_start());
 }
 
-esp_err_t app_wifi_start(TickType_t ticks_to_wait)
+esp_err_t app_wifi_start(TickType_t ticks_to_wait, const char* svc_name, const char* pop_value)
 {
 #ifdef USE_UNIFIED_PROVISIONING
     /* Configuration for the provisioning manager */
@@ -364,7 +364,11 @@ esp_err_t app_wifi_start(TickType_t ticks_to_wait)
          *     - device name when scheme is wifi_prov_scheme_ble
          */
         char service_name[12];
-        get_device_service_name(service_name, sizeof(service_name));
+        if (svc_name != NULL && strlen(svc_name) > 0) {
+            strncpy(service_name, svc_name, sizeof(service_name));
+        } else {
+            get_device_service_name(service_name, sizeof(service_name));
+        }
 
         /* What is the security level that we want (0 or 1):
          *      - WIFI_PROV_SECURITY_0 is simply plain text communication.
@@ -378,11 +382,16 @@ esp_err_t app_wifi_start(TickType_t ticks_to_wait)
          *      - this should be a string with length > 0
          *      - NULL if not used
          */
+        esp_err_t err = ESP_OK;
         char pop[9];
-        esp_err_t err = get_device_pop(pop, sizeof(pop));
-        if (err != ESP_OK) {
-            ESP_LOGE(TAG, "Error: %d. Failed to get PoP from NVS, Please perform Claiming.", err);
-            return err;
+        if (pop_value != NULL && strlen(pop_value) > 0) {
+            strncpy(pop, pop_value, sizeof(pop));
+        } else {
+            err = get_device_pop(pop, sizeof(pop));
+            if (err != ESP_OK) {
+                ESP_LOGE(TAG, "Error: %d. Failed to get PoP from NVS, Please perform Claiming.", err);
+                return err;
+            }
         }
 
         /* What is the service key (Wi-Fi password)

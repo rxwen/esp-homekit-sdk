@@ -294,7 +294,7 @@ static void emulator_thread_entry(void *p)
     }
     
     /* Start Wi-Fi */
-    app_wifi_start(0);
+    app_wifi_start(0, NULL, NULL);
 
     /* state of HAP_CHAR_UUID_ON - Turned ON or OFF before reboot */
     if(!emulator_get_state()) {
