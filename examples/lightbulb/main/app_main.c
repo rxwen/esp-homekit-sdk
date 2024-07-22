@@ -265,7 +265,7 @@ static void lightbulb_thread_entry(void *arg)
     app_wifi_init();
 
     /* After all the initializations are done, start the HAP core */
-    hap_start();
+    hap_start(NULL);
     /* Start Wi-Fi */
     app_wifi_start(portMAX_DELAY, NULL, NULL);
 

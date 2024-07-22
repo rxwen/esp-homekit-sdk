@@ -323,7 +323,7 @@ static void sensor_thread_entry(void *p)
     app_wifi_init();
 
     /* After all the initializations are done, start the HAP core */
-    hap_start();
+    hap_start(NULL);
     /* Start Wi-Fi */
     app_wifi_start(portMAX_DELAY, NULL, NULL);
     /* The task ends here. The read/write callbacks will be invoked by the HAP Framework */

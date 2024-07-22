@@ -209,7 +209,7 @@ static void smart_outlet_thread_entry(void *p)
     app_wifi_init();
 
     /* After all the initializations are done, start the HAP core */
-    hap_start();
+    hap_start(NULL);
     /* Start Wi-Fi */
     app_wifi_start(portMAX_DELAY, NULL, NULL);
 
