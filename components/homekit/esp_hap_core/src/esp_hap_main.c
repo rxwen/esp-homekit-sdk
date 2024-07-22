@@ -325,7 +325,7 @@ int hap_trigger_network_revert(void)
 }
 
 static bool hap_started;
-int hap_start(void)
+int hap_start(char* hostname)
 {
     if (hap_started) {
         ESP_MFI_DEBUG(ESP_MFI_DEBUG_WARN, "HAP already started");
@@ -373,7 +373,7 @@ int hap_start(void)
         ESP_MFI_DEBUG(ESP_MFI_DEBUG_ERR, "HAP Loop Failed: [%d]", ret);
         return ret;
     }
-    ret = hap_mdns_init();
+    ret = hap_mdns_init(hostname);
     if (ret != 0 ) {
         ESP_MFI_DEBUG(ESP_MFI_DEBUG_ERR, "HAP mDNS Init failed");
         return ret;

@@ -425,7 +425,7 @@ int hap_deinit();
  * @return HAP_SUCCESS on success
  * @return others on error
  */
-int hap_start(void);
+int hap_start(char* hostname);
 
 /**
  * @brief Stop HAP framework and free all relevant resources

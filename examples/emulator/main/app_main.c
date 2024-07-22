@@ -289,7 +289,7 @@ static void emulator_thread_entry(void *p)
     esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &hap_emulator_system_event_handler, NULL);
 
     /* After all the initializations are done, start the HAP core */
-    if (hap_start() != ESP_OK) {
+    if (hap_start(NULL) != ESP_OK) {
         printf("Failed to start HAP\n");
     }
     

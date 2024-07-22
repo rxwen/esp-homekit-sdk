@@ -318,7 +318,7 @@ static void fan_thread_entry(void *p)
     esp_event_handler_register(HAP_EVENT, ESP_EVENT_ANY_ID, &fan_hap_event_handler, NULL);
 
     /* After all the initializations are done, start the HAP core */
-    hap_start();
+    hap_start(NULL);
     /* Start Wi-Fi */
     app_wifi_start(portMAX_DELAY, NULL, NULL);
     /* The task ends here. The read/write callbacks will be invoked by the HAP Framework */

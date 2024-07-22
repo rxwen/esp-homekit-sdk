@@ -62,13 +62,16 @@ int hap_mdns_serv_stop(hap_mdns_handle_t *handle)
     return HAP_FAIL;
 }
 
-int hap_mdns_init()
+int hap_mdns_init(char* hostname)
 {
     int ret = HAP_SUCCESS;
+    if (hostname == NULL || strlen(hostname) == 0) {
+        hostname = "MyHost";
+    }
     if (!mdns_init_done) {
         ret = mdns_init();
         if (ret == ESP_OK) {
-            mdns_hostname_set("MyHost");
+            mdns_hostname_set(hostname);
             mdns_init_done = true;
             ESP_MFI_DEBUG(ESP_MFI_DEBUG_INFO, "mDNS initialised");
             return HAP_SUCCESS;
