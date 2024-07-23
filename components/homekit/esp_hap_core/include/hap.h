@@ -1532,6 +1532,9 @@ typedef enum {
      * an unpaired state for more than the time specified in HAP Spec R16.
      */
     HAP_EVENT_PAIRING_MODE_TIMED_OUT,
+    /* Accessory is hap core has started
+     */
+    HAP_EVENT_STARTED,
 } hap_event_t;
 
 /** Prototype for HomeKit Event handler

@@ -386,6 +386,7 @@ int hap_start(char* hostname)
     }
     ESP_MFI_DEBUG(ESP_MFI_DEBUG_INFO, "HAP Started");
     hap_started = true;
+    hap_report_event(HAP_EVENT_STARTED, NULL, 0);
     return HAP_SUCCESS;
 }
 
